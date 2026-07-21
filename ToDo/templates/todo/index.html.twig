@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ToDo - Liste{% endblock %}
+
+{% block body %}
+    <h1>ToDo - Liste</h1>
+
+    <p>
+        <a href="{{ path('todo_new') }}">+ Ajouter une tâche</a>
+    </p>
+
+    <table border="1" cellpadding="8" cellspacing="0">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Titre</th>
+                <th>Priorité</th>
+                <th>Status</th>
+                <th>Utilisateur</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for todo in todos %}
+            <tr>
+                <td>{{ todo.id }}</td>
+                <td>{{ todo.title }}</td>
+                <td>{{ todo.priority }}</td>
+                <td>{{ todo.status }}</td>
+                <td>{{ todo.assigneeUsername ?: 'Unassigned' }}</td>
+                <td>
+                    <a href="{{ path('todo_show', {id: todo.id}) }}">Voir</a>
+                    |
+                    <a href="{{ path('todo_edit', {id: todo.id}) }}">Modifier</a>
+                    |
+                    <form method="post" action="{{ path('todo_delete', {id: todo.id}) }}" style="display:inline;">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ todo.id) }}">
+                        <button type="submit" onclick="return confirm('Supprimer cette tâche ?')">Supprimer</button>
+                    </form>
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="6">Aucune tâche</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

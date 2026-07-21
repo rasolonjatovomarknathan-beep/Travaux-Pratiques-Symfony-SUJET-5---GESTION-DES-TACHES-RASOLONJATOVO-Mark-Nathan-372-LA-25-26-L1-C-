@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier ToDo{% endblock %}
+
+{% block body %}
+    <h1>Modifier la tâche #{{ todo.id }}</h1>
+
+    {{ form_start(form) }}
+        {{ form_row(form.title) }}
+        {{ form_row(form.description) }}
+        {{ form_row(form.priority) }}
+        {{ form_row(form.status) }}
+        {{ form_row(form.dueDate) }}
+        {{ form_row(form.assigneeUsername) }}
+
+        <button type="submit">Mettre à jour</button>
+    {{ form_end(form) }}
+
+    <p><a href="{{ path('todo_index') }}">Retour</a></p>
+{% endblock %}

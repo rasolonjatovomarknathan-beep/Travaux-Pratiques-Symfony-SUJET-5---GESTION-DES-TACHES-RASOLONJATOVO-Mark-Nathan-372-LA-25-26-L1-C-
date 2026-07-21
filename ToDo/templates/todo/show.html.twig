@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ToDo #{{ todo.id }}{% endblock %}
+
+{% block body %}
+    <h1>Tâche #{{ todo.id }}</h1>
+
+    <p><strong>Titre:</strong> {{ todo.title }}</p>
+    <p><strong>Description:</strong> {{ todo.description ?? '-' }}</p>
+    <p><strong>Priorité:</strong> {{ todo.priority }}</p>
+    <p><strong>Status:</strong> {{ todo.status }}</p>
+    <p><strong>Date (dueDate):</strong> {{ todo.dueDate ? todo.dueDate|date('Y-m-d') : '-' }}</p>
+    <p><strong>Assignée à:</strong> {{ todo.assigneeUsername ?: 'Unassigned' }}</p>
+
+    <p>
+        <a href="{{ path('todo_edit', {id: todo.id}) }}">Modifier</a>
+        |
+        <a href="{{ path('todo_index') }}">Retour</a>
+    </p>
+{% endblock %}
