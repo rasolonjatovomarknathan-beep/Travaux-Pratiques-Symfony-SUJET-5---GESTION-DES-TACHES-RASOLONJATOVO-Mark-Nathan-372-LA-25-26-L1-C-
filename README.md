@@ -1,3 +1,6 @@
+# Nom et prénom: RASOLONJATOVO MARK NATHAN
+# Classe: L1 C
+# Matricule: 372/LA/25-26
 # Sujet 5 - Gestion des tâches (ToDo) — Démarche pour réaliser le projet (Symfony)
 
 ## 1) Mise en place du projet
